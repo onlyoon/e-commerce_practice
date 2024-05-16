@@ -2,9 +2,11 @@ import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { buttonVariants } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+// kinde auth
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const Navbar = async () => {
+  // kinde auth section
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
@@ -14,6 +16,7 @@ const Navbar = async () => {
     <nav className="sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="flex h-14 items-center justify-between border-b border-zinc-200">
+          {/* 로고 */}
           <Link href="/" className="flex z-40 font-semibold">
             case <span className="text-green-600">cobra</span>
           </Link>
@@ -21,7 +24,6 @@ const Navbar = async () => {
             {user ? (
               <>
                 <Link href="/api/auth/logout" className={buttonVariants({
-                  // ghost를 통해 하얀색 설정
                   size: 'sm', variant: 'ghost'
                 })}>
                   Sign out
